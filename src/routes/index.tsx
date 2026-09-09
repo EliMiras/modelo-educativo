@@ -5,7 +5,8 @@ import { useMemo, useState } from "react";
 import aulaHero from "@/assets/modelo-educativo-aula.jpg";
 import aulaContexto from "@/assets/modelo-adaptacion-contexto.jpg";
 import aulaGlobal from "@/assets/modelo-educacion-global.jpg";
-import aulaHolistica from "@/assets/modelo-metodologia-holistica.jpg";
+import aulaHolisticaAula from "@/assets/modelo-holistica-aula.jpg";
+import modeloDocentesCrecen from "@/assets/modelo-docentes-crecen.jpg";
 import logoColor from "@/assets/logo-exdintra.svg";
 import logoWhite from "@/assets/logo-exdintra-white.svg";
 import almaymente from "@/assets/partners/almaymente.png";
@@ -13,6 +14,7 @@ import federica from "@/assets/partners/federica.png";
 import northern from "@/assets/partners/northern.png";
 import udima from "@/assets/partners/udima.png";
 import { Button } from "@/components/ui/button";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,8 +58,8 @@ const pillars = [
   {
     eyebrow: "Desarrollo integral de la persona",
     title: "Metodología Holística",
-    image: aulaHolistica,
-    alt: "Docentes en un aula Waldorf compartiendo materiales pedagógicos",
+    image: aulaHolisticaAula,
+    alt: "Maestra guiando a niños con materiales Montessori en un aula luminosa",
     text: "Creando un estado positivo para el aprendizaje. En Exdintra entendemos que no hay desarrollo profesional sin desarrollo personal. Nos involucramos emocionalmente con el docente en el proceso, fomentamos la curiosidad y la participación, concediendo especial atención al intercambio de experiencias e ideas, y trabajamos teniendo en cuenta pensamiento creativo, asociativo y crítico a través de propuestas reales de aula.",
   },
   {
@@ -79,7 +81,7 @@ const pillars = [
 const footerGroups = [
   {
     title: "Programas Académicos",
-    links: ["Masters", "Diplomados", "Cursos", "Prácticas Internacionales"],
+    links: ["Máster", "Microcredenciales", "Viajes Académicos", "Modelo Educativo"],
   },
   {
     title: "Quienes somos",
@@ -88,6 +90,41 @@ const footerGroups = [
   {
     title: "Ayuda",
     links: ["Preguntas Frecuentes", "Aviso Legal", "Política de Privacidad", "Política de Cookies"],
+  },
+];
+
+const faqs = [
+  {
+    question: "¿Qué requisitos debo cumplir para inscribirme en los programas de Exdintra?",
+    answer:
+      "Depende del tipo de curso se necesitará tener una Licenciatura (Bachelor) o no. Nuestros programas están diseñados para alumnos con experiencia o sin experiencia en el campo específico de cada curso, por lo que la mayoría de ellos no requieren una base educativa experiencial previa en el área relacionada.",
+  },
+  {
+    question: "¿Cuál es el proceso de inscripción?",
+    answer:
+      "Solo hay que completar el formulario de inscripción en la web y seguir los pasos indicados. A continuación, nos pondremos en contacto contigo lo antes posible, o contacta a nuestro whatsapp +34 650909336. Y si has intentado inscribirte, pero has tenido algún inconveniente en el proceso, vivas en el país que vivas, no dudes en escribirnos a info@exdintra.com y en un plazo máximo de 24 horas de lunes a viernes nos pondremos en contacto contigo para orientarte.",
+  },
+  {
+    question: "¿Hay pago de matrícula?",
+    answer:
+      "Sí, depende del curso será una cantidad u otra. El pago de matrícula incluye el título también, no tendrás que pagarlo aparte.",
+  },
+  {
+    question: "¿Qué formas de pago me ofrece Exdintra?",
+    answer: "La matrícula al inicio junto con un 50% del precio del curso y al mes siguiente el otro 50%.",
+  },
+  {
+    question: "¿Tengo que residir en España para matricularme en alguno de los cursos o son totalmente online?",
+    answer: "No, no es necesario residir en España. Nuestros programas son totalmente online.",
+  },
+  {
+    question: "¿Recibiré algún tipo de certificación al completar una formación de Exdintra?",
+    answer: "Un título de la Universidad a Distancia de Madrid UDIMA.",
+  },
+  {
+    question: "¿El profesor se pondrá en contacto conmigo?, ¿Cuál será el medio?",
+    answer:
+      "Sí. Por medio de correo electrónico, la plataforma de estudio, chat desde el móvil o desde una sala virtual desde la Universidad.",
   },
 ];
 
@@ -298,14 +335,38 @@ function Index() {
           <div className="relative">
             <div className="absolute -right-7 -top-7 hidden size-32 rounded-full bg-mint md:block" aria-hidden="true" />
             <img
-              src={aulaHolistica}
-              alt="Docentes compartiendo una dinámica de aprendizaje consciente en el aula"
+              src={modeloDocentesCrecen}
+              alt="Docente con alumnos en una dinámica de aprendizaje consciente en un aula Waldorf"
               className="relative aspect-[1.08/1] w-full rounded-[2rem] object-cover shadow-soft"
               loading="lazy"
               width={1536}
               height={1024}
             />
           </div>
+        </div>
+      </section>
+
+      <section className="bg-section py-16 sm:py-24" id="preguntas-frecuentes">
+        <div className="mx-auto max-w-4xl px-5 lg:px-8">
+          <h2 className="text-center font-heading text-4xl font-black leading-tight text-primary sm:text-5xl">
+            Preguntas Frecuentes
+          </h2>
+          <div className="mx-auto mt-5 h-3 w-44 rounded-full bg-mint" />
+          <p className="mt-6 text-center text-base leading-relaxed text-foreground sm:text-lg">
+            Resolvemos las dudas más habituales sobre nuestros programas y el proceso de inscripción.
+          </p>
+          <Accordion type="single" collapsible className="mt-10 w-full">
+            {faqs.map((faq, index) => (
+              <AccordionItem key={index} value={`item-${index}`} className="border-b-foreground/10">
+                <AccordionTrigger className="font-heading text-left text-lg font-black text-primary hover:no-underline">
+                  {faq.question}
+                </AccordionTrigger>
+                <AccordionContent className="text-base leading-relaxed text-foreground">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
 
@@ -336,7 +397,10 @@ function Index() {
               <ul className="mt-4 space-y-2 text-sm text-primary-foreground/85">
                 {group.links.map((link) => (
                   <li key={link}>
-                    <a href="https://exdintra.com/" className="transition hover:text-mint">
+                    <a
+                      href={link === "Modelo Educativo" ? "/" : link === "Preguntas Frecuentes" ? "#preguntas-frecuentes" : "https://exdintra.com/"}
+                      className="transition hover:text-mint"
+                    >
                       {link}
                     </a>
                   </li>
