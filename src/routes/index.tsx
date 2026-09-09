@@ -93,7 +93,7 @@ const footerGroups = [
 
 function Index() {
   const [activePillar, setActivePillar] = useState(0);
-  const currentPillar = pillars[activePillar];
+  const currentPillar = pillars[activePillar] ?? pillars[0]!;
 
   const nextPillar = () => setActivePillar((current) => (current + 1) % pillars.length);
   const previousPillar = () => setActivePillar((current) => (current + pillars.length - 1) % pillars.length);
